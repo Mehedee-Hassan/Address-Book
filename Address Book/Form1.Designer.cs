@@ -157,20 +157,22 @@
             // nameColumnHeader
             // 
             this.nameColumnHeader.Text = "Name";
+            this.nameColumnHeader.Width = 85;
             // 
             // emailColumnHeader
             // 
             this.emailColumnHeader.Text = "Email";
+            this.emailColumnHeader.Width = 100;
             // 
             // personalCnColumnHeader
             // 
-            this.personalCnColumnHeader.Text = "Personal CN";
-            this.personalCnColumnHeader.Width = 83;
+            this.personalCnColumnHeader.Text = "Personal Contact No";
+            this.personalCnColumnHeader.Width = 110;
             // 
             // homeCnColumnHeader
             // 
-            this.homeCnColumnHeader.Text = "Home CN";
-            this.homeCnColumnHeader.Width = 85;
+            this.homeCnColumnHeader.Text = "Home Contact No";
+            this.homeCnColumnHeader.Width = 100;
             // 
             // addressColumnHeader
             // 

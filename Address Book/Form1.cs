@@ -23,7 +23,11 @@ namespace Address_Book
         {
 
         }
+        
         string fileLocation = @"personData.csv";
+        
+
+
         private void showButton_Click(object sender, EventArgs e)
         {
             FileStream aStream = new FileStream(fileLocation, FileMode.OpenOrCreate);
@@ -123,34 +127,80 @@ namespace Address_Book
 
            // personListView
             ListViewItem listViewItem = new ListViewItem();
-            //ListViewItem[] listViewItems = personListView.Items.Find(searchTextBox.Text,false);
-
-            //if (listViewItems.Length != 0)
-            //{
-
-            //}
 
 
-
-            listViewItem = personListView.FindItemWithText(searchTextBox.Text);
+            //search 1
+            //listViewItem = personListView.FindItemWithText(searchTextBox.Text);
 
             
+            //search 2
+
+            int searchByComboBoxSelectedIndex  = searchByComboBox.SelectedIndex;
+
+            //local variable for test and print
+            //==================================
+            bool isFound = false;
+            string message = "Item Found !!! \n\n---------\n ";
+                             //+
+                             //"Name\tEmail\t\tPersonal Contact No\tHome Cntact No" +
+                             //"\tAddress\t"+
+                             //"\n";
+            //===================================
 
 
-            if(listViewItem != null)
+            //search each listItem in persn listview for the particular combobox selected index
+            //=========================
+
+            foreach (ListViewItem listViewItem1 in personListView.Items)
             {
-                MessageBox.Show("Item Found !!! \n\n---------\n"
-                 +"Name :"+listViewItem.Text+" \n"+
-                 "Email :"+listViewItem.SubItems[1].Text+"\n"+
-                 "Personal Contac No :"+listViewItem.SubItems[2].Text+"\n"+
-                 "Home Contact No :"+listViewItem.SubItems[3].Text+"\n"+
-                 "Address :"+listViewItem.SubItems[4].Text);
+                if (listViewItem1.SubItems[searchByComboBoxSelectedIndex].Text == searchTextBox.Text)
+                {
+                    message +="Name :\t"+ 
+                        listViewItem1.SubItems[0].Text + "\n"+
+                        "Email :\t"+
+                        listViewItem1.SubItems[1].Text + "\n"+
+                        "Personal Cntact No :\t"+
+                        listViewItem1.SubItems[2].Text + "\n"+
+                        "Home Cntact No :\t"+
+                        listViewItem1.SubItems[3].Text + "\n"+
+                        "Address :\t"+
+                        listViewItem1.SubItems[4].Text+"\n"+
+                        "\n\n";
+
+                    isFound = true;
+                }
+            }
+
+            //========
+            //search 1;
+            //if(listViewItem != null)
+            //{
+            //    MessageBox.Show("Item Found !!! \n\n---------\n"
+            //     +"Name :"+listViewItem.Text+" \n"+
+            //     "Email :"+listViewItem.SubItems[1].Text+"\n"+
+            //     "Personal Contac No :"+listViewItem.SubItems[2].Text+"\n"+
+            //     "Home Contact No :"+listViewItem.SubItems[3].Text+"\n"+
+            //     "Address :"+listViewItem.SubItems[4].Text);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Sorry,\nItem Not Found\nOn\nAddress Book   ");
+            //}
+            //============
+            //search 2
+            //============
+
+            if (isFound)
+            {
+                MessageBox.Show(message);
+
             }
             else
             {
+                
                 MessageBox.Show("Sorry,\nItem Not Found\nOn\nAddress Book   ");
+                
             }
-
 
         }
 
@@ -159,8 +209,8 @@ namespace Address_Book
             searchButton.Enabled = true;
             searchTextBox.Enabled = true;
             enterValueLabel.Text = searchByComboBox.SelectedItem.ToString()+" :" ;
+            searchTextBox.Text = "";
 
-            
         }
 
         private void AddressBookForm_Load(object sender, EventArgs e)
